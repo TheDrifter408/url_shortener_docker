@@ -1,0 +1,22 @@
+services:
+  backend:
+    build:
+      context: ../url_shortener_backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ../url_shortener_backend:/app
+      - /app/node_modules
+
+  frontend:
+    build:
+      context: ../url_shortener_frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumnes:
+      - ../url_shortener_frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
